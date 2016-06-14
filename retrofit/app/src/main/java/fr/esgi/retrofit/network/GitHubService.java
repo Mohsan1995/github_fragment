@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.network;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import retrofit2.http.Path;
 public interface GitHubService {
 
     String END_POINT = "https://api.github.com";
-    String TOKEN = "04301e3f5ef0106e891cb8dfe81a9a489fef80d1";
+    String TOKEN = "";
 
     @Headers("Authorization: token "+TOKEN)
     @GET("users/{username}")
     Call<User> getUser(@Path("username") String username);
 
-
+    @Headers("Authorization: token "+TOKEN)
     @GET("users/{user}/repos")
     Call<List<Repo>> listRepos(@Path("user") String user);
 

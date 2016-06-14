@@ -13,8 +13,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fr.esgi.retrofit.GitHubService;
-import fr.esgi.retrofit.GithubWebService;
+import fr.esgi.retrofit.network.GitHubService;
+import fr.esgi.retrofit.network.GithubWebService;
 import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.Repo;
 import fr.esgi.retrofit.adapter.RepoAdapter;

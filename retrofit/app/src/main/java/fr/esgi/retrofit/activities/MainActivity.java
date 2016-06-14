@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.activities;
 
 
 
@@ -18,10 +18,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.R;
+import fr.esgi.retrofit.activities.ConnectionActivity;
 import fr.esgi.retrofit.fragment.ListRepoFragment;
 import fr.esgi.retrofit.fragment.ProfileFragment;
 import fr.esgi.retrofit.fragment.ViewPagerFragment;
@@ -52,13 +53,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-
         //Permet d'ajouter les bars pour ouvrir la navigation view
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.addDrawerListener(toggle);
-
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);

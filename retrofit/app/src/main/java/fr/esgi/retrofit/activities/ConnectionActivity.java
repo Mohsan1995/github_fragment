@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.network.GitHubService;
+import fr.esgi.retrofit.network.GithubWebService;
+import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,8 +43,6 @@ public class ConnectionActivity extends AppCompatActivity{
         service = GithubWebService.get();
 
         sharedPreferences = this.getPreferences(MODE_PRIVATE);
-
-
 
 
         if(sharedPreferences.contains(USER_KEY)){

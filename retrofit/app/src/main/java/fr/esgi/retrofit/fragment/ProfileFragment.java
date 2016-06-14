@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import fr.esgi.retrofit.GitHubService;
-import fr.esgi.retrofit.GithubWebService;
+import fr.esgi.retrofit.network.GitHubService;
+import fr.esgi.retrofit.network.GithubWebService;
 import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.User;
 import retrofit2.Call;
