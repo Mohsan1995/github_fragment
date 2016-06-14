@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
                 fragment = ProfileFragment.newInstance(name);
             }else if( id == R.id.listRepoMenu){
-                fragment = new ListRepoFragment();
+                fragment = ListRepoFragment.newInstance(name);
             }
 
             fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
