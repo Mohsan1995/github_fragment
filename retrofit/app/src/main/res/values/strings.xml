@@ -2,7 +2,7 @@
     <string name="app_name">retrofit</string>
     <string name="username">username</string>
     <string name="save">save</string>
-    <string name="main_activity">Main Activity</string>
+    <string name="main_activity">List Repositorie</string>
     <string name="profile">Profile</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

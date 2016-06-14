@@ -1,5 +1,7 @@
 package fr.esgi.retrofit;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -16,6 +18,10 @@ public interface GitHubService {
     @Headers("Authorization: token "+TOKEN)
     @GET("users/{username}")
     Call<User> getUser(@Path("username") String username);
+
+
+    @GET("users/{user}/repos")
+    Call<List<Repo>> listRepos(@Path("user") String user);
 
 
 }

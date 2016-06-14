@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        Log.e("VALUE", name);
 
 
 
@@ -112,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (id == R.id.userProfile) {
                 //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
                 fragment = ProfileFragment.newInstance(name);
+            }else if( id == R.id.listRepoMenu){
+                fragment = new ListRepoFragment();
             }
 
             fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
