@@ -1,12 +1,10 @@
 package fr.esgi.retrofit;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import fr.esgi.retrofit.model.Repo;
 
 /**
  * Created by mohsan on 14/06/16.

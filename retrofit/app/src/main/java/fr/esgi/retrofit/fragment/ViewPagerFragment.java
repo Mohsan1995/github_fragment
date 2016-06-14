@@ -1,19 +1,23 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.GitHubService;
+import fr.esgi.retrofit.GithubWebService;
+import fr.esgi.retrofit.R;
+import fr.esgi.retrofit.ViewPagerAdapter;
+import fr.esgi.retrofit.model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,37 +25,35 @@ import retrofit2.Response;
 /**
  * Created by mohsan on 14/06/16.
  */
-public class ProfileFragment extends Fragment {
+public class ViewPagerFragment extends Fragment{
 
-    @BindView(R.id.name) TextView name;
-    @BindView(R.id.pseudo) TextView pseudo;
-    @BindView(R.id.followers) TextView followers;
-    @BindView(R.id.image) ImageView avatar;
+    @BindView(R.id.viewPagerTab) ViewPager viewPager;
+    @BindView(R.id.sliding_tabs) TabLayout tabLayout;
+    ActionBar actionBar;
     String username;
     GitHubService service;
 
-
-    public static Fragment newInstance(String textToDisplay){
-        ProfileFragment mainFragment = new ProfileFragment();
+    public static Fragment newInstance(String value){
+        ViewPagerFragment mainFragment = new ViewPagerFragment();
         Bundle arguments = new Bundle();
-        arguments.putString("Username", textToDisplay);
+        arguments.putString("Username", value);
         mainFragment.setArguments(arguments);
         return mainFragment;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        ButterKnife.bind(this, v);
-
+        View view = inflater.inflate(R.layout.fragment_viewpager, container, false);
+        ButterKnife.bind(this, view);
         Bundle arguments = getArguments();
         username = arguments.getString("Username");
+
+        Log.e("TEST", username);
         service = GithubWebService.get();
         loadUser(username);
 
-        return  v;
+        return view;
     }
 
 
@@ -61,8 +63,7 @@ public class ProfileFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     User user = response.body();
-
-                    displayUser(user);
+                    setupViewPager(user);
                 }
             }
 
@@ -73,16 +74,11 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    protected void displayUser(User user){
-        name.setText(user.getName());
-        pseudo.setText(user.getLogin());
-        followers.setText(user.getFollowers());
 
-        if (user.getAvatarUrl() != null) {
-            Glide.with(avatar.getContext())
-                    .load(user.getAvatarUrl())
-                    .into(avatar);
-        }
 
+    private void setupViewPager(User user) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), user);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

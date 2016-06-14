@@ -11,6 +11,12 @@
             android:id="@+id/listRepoMenu"
             android:icon="@android:drawable/ic_dialog_map"
             android:title="@string/main_activity" />
+
+        <item
+            android:id="@+id/menuViewPager"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="@string/view_pager" />
+
     </group>
 
 

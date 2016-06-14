@@ -1,20 +1,23 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.GitHubService;
+import fr.esgi.retrofit.GithubWebService;
+import fr.esgi.retrofit.R;
+import fr.esgi.retrofit.model.Repo;
+import fr.esgi.retrofit.RepoAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

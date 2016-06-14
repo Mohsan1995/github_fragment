@@ -13,13 +13,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.fragment.ListRepoFragment;
+import fr.esgi.retrofit.fragment.ProfileFragment;
+import fr.esgi.retrofit.fragment.ViewPagerFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -113,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = ProfileFragment.newInstance(name);
             }else if( id == R.id.listRepoMenu){
                 fragment = ListRepoFragment.newInstance(name);
+            }else if( id == R.id.menuViewPager){
+                fragment =  ViewPagerFragment.newInstance(name);
             }
 
             fm.beginTransaction().replace(R.id.content_frame, fragment).commit();

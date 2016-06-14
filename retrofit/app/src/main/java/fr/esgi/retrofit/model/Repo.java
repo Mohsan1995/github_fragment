@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.model;
 
 /**
  * Created by mohsan on 14/06/16.

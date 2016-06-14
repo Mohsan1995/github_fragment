@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import fr.esgi.retrofit.model.Repo;
+
 /**
  * Created by mohsan on 14/06/16.
  */

@@ -2,6 +2,8 @@ package fr.esgi.retrofit;
 
 import java.util.List;
 
+import fr.esgi.retrofit.model.Repo;
+import fr.esgi.retrofit.model.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;

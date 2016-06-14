@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,6 +13,8 @@ public class User {
     @SerializedName("avatar_url")
     public String avatarUrl;
     public String followers;
+    public String following;
+    public String public_repos;
 
     public User(String name, String login, String avatarUrl, String followers) {
         this.name = name;
@@ -35,5 +37,14 @@ public class User {
 
     public String getFollowers() {
         return followers;
+    }
+
+
+    public String getFollowing() {
+        return following;
+    }
+
+    public String getPublic_repos() {
+        return public_repos;
     }
 }
