@@ -14,7 +14,10 @@ public class User {
     public String avatarUrl;
     public String followers;
     public String following;
-    public String public_repos;
+    @SerializedName("public_repos")
+    public String publicRepos;
+
+
 
     public User(String name, String login, String avatarUrl, String followers) {
         this.name = name;
@@ -44,7 +47,10 @@ public class User {
         return following;
     }
 
-    public String getPublic_repos() {
-        return public_repos;
+    public String getPublicRepos() {
+        return publicRepos;
     }
+
+
+
 }

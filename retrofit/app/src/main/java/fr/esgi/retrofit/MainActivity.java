@@ -2,6 +2,8 @@ package fr.esgi.retrofit;
 
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +29,9 @@ import fr.esgi.retrofit.fragment.ViewPagerFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    String USER_KEY ="USERNAME";
+
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fm;
     Fragment fragment;
     String name;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -71,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+        fragment= new Fragment();
+
+        sharedPreferences = this.getPreferences(MODE_PRIVATE);
 
 
 
@@ -117,6 +127,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = ListRepoFragment.newInstance(name);
             }else if( id == R.id.menuViewPager){
                 fragment =  ViewPagerFragment.newInstance(name);
+            }else if( id == R.id.menuLogout){
+                sharedPreferences.edit().remove(USER_KEY).apply();
+
+                Intent intent = new Intent(this, ConnectionActivity.class);
+                startActivity(intent);
             }
 
             fm.beginTransaction().replace(R.id.content_frame, fragment).commit();

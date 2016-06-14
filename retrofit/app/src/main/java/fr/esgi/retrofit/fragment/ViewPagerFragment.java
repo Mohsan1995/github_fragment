@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import fr.esgi.retrofit.GitHubService;
 import fr.esgi.retrofit.GithubWebService;
 import fr.esgi.retrofit.R;
-import fr.esgi.retrofit.ViewPagerAdapter;
+import fr.esgi.retrofit.adapter.ViewPagerAdapter;
 import fr.esgi.retrofit.model.User;
 import retrofit2.Call;
 import retrofit2.Callback;

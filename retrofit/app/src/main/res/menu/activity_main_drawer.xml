@@ -4,18 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/userProfile"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="@string/profile" />
 
         <item
             android:id="@+id/listRepoMenu"
-            android:icon="@android:drawable/ic_dialog_map"
+            android:icon="@drawable/ic_action_first"
             android:title="@string/main_activity" />
 
         <item
             android:id="@+id/menuViewPager"
             android:icon="@android:drawable/ic_dialog_map"
             android:title="@string/view_pager" />
+
+
+        <item
+            android:id="@+id/menuLogout"
+            android:title="@string/logout" />
 
     </group>
 

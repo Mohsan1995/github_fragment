@@ -42,11 +42,13 @@ public class ConnectionActivity extends AppCompatActivity{
         sharedPreferences = this.getPreferences(MODE_PRIVATE);
 
 
+
+
         if(sharedPreferences.contains(USER_KEY)){
             Toast.makeText(ConnectionActivity.this, "ALREAD CONNECTED", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra(USER_KEY, sharedPreferences.getString(USER_KEY, ""));
-            startActivity(intent);
+            String value=sharedPreferences.getString(USER_KEY, "");
+            userEditText.setText(value);
+
         }
 
 

@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,7 +31,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment= new Fragment();
 
         if(position==0){
-           fragment=  ViewPagerTab.newInstance(user.getPublic_repos());
+           fragment=  ViewPagerTab.newInstance(user.getPublicRepos());
         }else if(position==1){
             fragment =ViewPagerTab.newInstance(user.getFollowers());
         }else if(position==2){
@@ -52,7 +52,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         String name="";
         if(position==0){
-            name ="Repo public";
+            name ="Repository public public";
         }else if(position==1){
             name= "Nombre de follower";
         }else if(position==2){

@@ -17,7 +17,7 @@ import fr.esgi.retrofit.GitHubService;
 import fr.esgi.retrofit.GithubWebService;
 import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.Repo;
-import fr.esgi.retrofit.RepoAdapter;
+import fr.esgi.retrofit.adapter.RepoAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

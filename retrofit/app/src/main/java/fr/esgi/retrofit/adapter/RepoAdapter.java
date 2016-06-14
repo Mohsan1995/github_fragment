@@ -1,4 +1,4 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.Repo;
 
 /**

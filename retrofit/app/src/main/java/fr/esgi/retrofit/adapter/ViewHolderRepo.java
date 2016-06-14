@@ -1,9 +1,10 @@
-package fr.esgi.retrofit;
+package fr.esgi.retrofit.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import fr.esgi.retrofit.R;
 import fr.esgi.retrofit.model.Repo;
 
 /**
