@@ -1,20 +1,11 @@
 package fr.esgi.retrofit;
 
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -25,12 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 
-
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     Toolbar toolbar;
@@ -39,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActionBarDrawerToggle toggle;
     FragmentManager fm;
+    Fragment fragment;
 
 
     @Override
@@ -63,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         toggle.syncState();
 
-//        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -107,18 +96,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+            FragmentManager fm = getSupportFragmentManager();
+            int id = item.getItemId();
 
+            if (id == R.id.userProfile) {
+                //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
+                fragment = new ProfileFragment();
+            }
 
+            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
