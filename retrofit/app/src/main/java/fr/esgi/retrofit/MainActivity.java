@@ -13,21 +13,26 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawer;
-    Toolbar toolbar;
-    NavigationView navigationView;
-    FloatingActionButton fab;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.nav_view) NavigationView navigationView;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
     ActionBarDrawerToggle toggle;
     FragmentManager fm;
     Fragment fragment;
+    String name;
 
 
     @Override
@@ -35,13 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        drawer= (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView= (NavigationView) findViewById(R.id.nav_view);
-        fab= (FloatingActionButton) findViewById(R.id.fab);
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
 
 
         //Permet d'ajouter les bars pour ouvrir la navigation view
@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+             name = extras.getString("USERNAME");
+        }
+
+
+        Log.e("VALUE", name);
 
 
 
@@ -103,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if (id == R.id.userProfile) {
                 //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
-                fragment = new ProfileFragment();
+                fragment = ProfileFragment.newInstance(name);
             }
 
             fm.beginTransaction().replace(R.id.content_frame, fragment).commit();

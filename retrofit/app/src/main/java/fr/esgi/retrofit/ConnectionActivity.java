@@ -42,9 +42,10 @@ public class ConnectionActivity extends AppCompatActivity{
 
 
         if(sharedPreferences.contains(USER_KEY)){
-
             Toast.makeText(ConnectionActivity.this, "ALREAD CONNECTED", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(USER_KEY, sharedPreferences.getString(USER_KEY, ""));
+            startActivity(intent);
         }
 
 
@@ -64,6 +65,8 @@ public class ConnectionActivity extends AppCompatActivity{
                     editor.apply();
 
                     Intent intent = new Intent(ConnectionActivity.this, MainActivity.class);
+                    intent.putExtra(USER_KEY, sharedPreferences.getString(USER_KEY, ""));
+                    startActivity(intent);
                 }
 
 
