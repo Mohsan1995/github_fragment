@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">retrofit</string>
+    <string name="username">username</string>
+    <string name="save">save</string>
+    <string name="main_activity">Main Activity</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="@string/main_activity" />
+        <item
+            android:id="@+id/userProfile"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="@string/profile" />
+    </group>
+
+
+
+</menu>
