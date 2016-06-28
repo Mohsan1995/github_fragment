@@ -13,11 +13,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.esgi.retrofit.R;
+import fr.esgi.retrofit.adapter.RepoAdapter;
+import fr.esgi.retrofit.model.Repo;
 import fr.esgi.retrofit.network.GitHubService;
 import fr.esgi.retrofit.network.GithubWebService;
-import fr.esgi.retrofit.R;
-import fr.esgi.retrofit.model.Repo;
-import fr.esgi.retrofit.adapter.RepoAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,43 +27,40 @@ import retrofit2.Response;
  */
 public class ListRepoFragment extends Fragment {
 
-
+    private static final String USERNAME = "Username";
     @BindView(R.id.listRepo) RecyclerView recyclerView;
     String username;
     GitHubService service;
 
-
-    public static Fragment newInstance(String textToDisplay){
+    public static Fragment newInstance(String textToDisplay) {
         ListRepoFragment mainFragment = new ListRepoFragment();
         Bundle arguments = new Bundle();
-        arguments.putString("Username", textToDisplay);
+        arguments.putString(USERNAME, textToDisplay);
         mainFragment.setArguments(arguments);
         return mainFragment;
     }
-
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_repo, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         Bundle arguments = getArguments();
-        username = arguments.getString("Username");
+        username = arguments.getString(USERNAME);
         service = GithubWebService.get();
 
         loadRepo(username);
 
-        return  view;
+        return view;
     }
 
-    protected void loadRepo(String name){
+    protected void loadRepo(String name) {
         service.listRepos(name).enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<Repo> userList = response.body();
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(new RepoAdapter(userList));

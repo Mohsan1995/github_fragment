@@ -20,48 +20,38 @@ import fr.esgi.retrofit.R;
  */
 public class ViewPagerTab extends Fragment {
 
-    String USER_KEY ="USERNAME";
-
-
+    private static final String VALUE = "value";
     @BindView(R.id.viewPagerValue)
     TextView textView;
     String value;
     SharedPreferences sharedPreferences;
 
-
-    public static Fragment newInstance(String value){
+    public static Fragment newInstance(String value) {
         ViewPagerTab mainFragment = new ViewPagerTab();
         Bundle arguments = new Bundle();
-        arguments.putString("value", value);
+        arguments.putString(VALUE, value);
         mainFragment.setArguments(arguments);
         return mainFragment;
     }
-
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         Bundle arguments = getArguments();
-        if(arguments!=null){
-            value = arguments.getString("value");
+        if (arguments != null) {
+            value = arguments.getString(VALUE);
         }
 
         Log.e("TEST", value);
 
         textView.setText(value);
 
-
-
-
         return view;
-
     }
-
 
 }

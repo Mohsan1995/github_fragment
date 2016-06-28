@@ -25,7 +25,7 @@ import retrofit2.Response;
 public class ConnectionActivity extends AppCompatActivity{
 
 
-    String USER_KEY ="USERNAME";
+    final static String USER_KEY ="USERNAME";
 
     @BindView(R.id.username)
     EditText userEditText;
