@@ -1,7 +1,5 @@
 package fr.esgi.retrofit.activities;
 
-
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,16 +20,13 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.esgi.retrofit.R;
-import fr.esgi.retrofit.activities.ConnectionActivity;
 import fr.esgi.retrofit.fragment.ListRepoFragment;
 import fr.esgi.retrofit.fragment.ProfileFragment;
 import fr.esgi.retrofit.fragment.ViewPagerFragment;
 
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    String USER_KEY ="USERNAME";
+    final static String USER_KEY = "USERNAME";
 
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -39,11 +34,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.fab) FloatingActionButton fab;
 
     ActionBarDrawerToggle toggle;
-    FragmentManager fm;
-    Fragment fragment;
     String name;
     SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,34 +47,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Permet d'ajouter les bars pour ouvrir la navigation view
         toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                    .setAction("Action", null).show();
             }
         });
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-             name = extras.getString("USERNAME");
+            name = extras.getString("USERNAME");
         }
 
-
-        fragment= new Fragment();
-
         sharedPreferences = this.getPreferences(MODE_PRIVATE);
+    }
 
-
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
@@ -95,47 +87,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onNavigationItemSelected(MenuItem item) {
+        FragmentManager fm = getSupportFragmentManager();
         int id = item.getItemId();
 
+        Fragment fragment = null;
+        if (id == R.id.userProfile) {
+            //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
+            fragment = ProfileFragment.newInstance(name);
+        } else if (id == R.id.listRepoMenu) {
+            fragment = ListRepoFragment.newInstance(name);
+        } else if (id == R.id.menuViewPager) {
+            fragment = ViewPagerFragment.newInstance(name);
+        } else if (id == R.id.menuLogout) {
+            sharedPreferences.edit().remove(USER_KEY).apply();
 
+            Intent intent = new Intent(this, ConnectionActivity.class);
+            startActivity(intent);
+        }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-            FragmentManager fm = getSupportFragmentManager();
-            int id = item.getItemId();
-
-            if (id == R.id.userProfile) {
-                //fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
-                fragment = ProfileFragment.newInstance(name);
-            }else if( id == R.id.listRepoMenu){
-                fragment = ListRepoFragment.newInstance(name);
-            }else if( id == R.id.menuViewPager){
-                fragment =  ViewPagerFragment.newInstance(name);
-            }else if( id == R.id.menuLogout){
-                sharedPreferences.edit().remove(USER_KEY).apply();
-
-                Intent intent = new Intent(this, ConnectionActivity.class);
-                startActivity(intent);
-            }
-
-            fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
+        fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
 
     }
 }
